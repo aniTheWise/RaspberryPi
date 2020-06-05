@@ -1,0 +1,10 @@
+1. start mosquitto (verbose) on default port 1883 localhost
+mosquitto -v
+2. start mosquitto (verbose, local, 1884)
+mosquitto -v -p 1884
+3. NOTE: mosquitto is running as a service on startup
+4. publish a message to broker on port 1884 and to topic test/esp
+mosquitto_pub -p 1884 -t "test/esp" -m "LED ON"
+mosquitto_pub -p 1884 -t "test/esp" -m "LED OFF"
+5. subscribe to a topic on a specific non default port
+mosquitto_sub -p 1884 -t "test/esp"

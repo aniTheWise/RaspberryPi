@@ -1,0 +1,57 @@
+# Now that you have installed AlexaPi there's a couple of things you need to do.
+
+DO NOT REPORT AN ISSUE UNLESS YOU HAVE READ THIS THOROUGHLY!
+
+# Reboot your machine or start AlexaPi with
+
+sudo systemctl start AlexaPi.service
+
+
+# Check the status of AlexaPi with
+
+sudo systemctl status AlexaPi.service
+
+
+# How do I upgrade AlexaPi?
+Go to your installation directory, which is /opt/AlexaPi by default:
+
+cd /opt/AlexaPi
+Pull from the repo:
+
+sudo git pull
+Run the setup script again
+
+sudo ./src/scripts/setup.sh
+Start with a fresh config or update your configuration file - consult the config.template.yaml, CHANGELOG.md and Configuration changes wiki page.
+
+# How do I uninstall AlexaPi?
+To be nice to AlexaPi, first stop it & disable it:
+
+sudo systemctl disable AlexaPi.service
+sudo systemctl stop AlexaPi.service
+Remove AlexaPi:
+
+sudo rm -rf /opt/AlexaPi
+
+# For systemd install:
+sudo rm -rf /etc/systemd/system/AlexaPi.service.d/
+sudo rm /usr/lib/systemd/system/AlexaPi.service
+
+# For classic init install:
+sudo rm /var/log/AlexaPi.log
+sudo rm /etc/init.d/AlexaPi
+
+sudo systemctl daemon-reload
+(optional) Remove all configuration:
+
+sudo rm -rf /etc/opt/AlexaPi
+
+# Can I discover my devices with AlexaPi like with Echo?
+No. AVS API doesn't have a way to connect the devices to Amazon. You can probably still do this by setting up your own Alexa skills, but that's a different thing than AlexaPi.
+
+AlexaPi will allow you to control your devices such as Hue provided you also have a genuine Echo in the network which acts as a gateway between the Alexa service and your Hue bridge.
+
+# How do I change my location, time zone, units, ...?
+This is not up to us. Do that over at Amazon: https://alexa.amazon.com
+
+
